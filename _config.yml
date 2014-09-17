@@ -1,0 +1,13 @@
+highlighter: pygments
+
+contact:
+  name: Derek Hopper
+  twitter: derekjhopper
+  github: djhopper01
+  linkedin: derekhopper
+  email: hopper.derek@gmail.com
+
+name: Open Fort Wayne
+
+sass:
+  style: :compressed

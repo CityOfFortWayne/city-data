@@ -1,0 +1,26 @@
+---
+---
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.hero {
+  text-align: center;
+
+  > h1, > h2 {
+    margin: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero {
+    margin-top: 240px;
+  }
+}
+
+h1 {
+  > span {
+    font-weight: 300;
+  }
+}
