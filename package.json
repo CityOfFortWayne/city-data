@@ -1,0 +1,10 @@
+{
+  "name": "data",
+  "description": "City of Fort Wayne APIs",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "restify": "^2.8.2",
+    "coffee-script": "^1.8.0"
+  }
+}
