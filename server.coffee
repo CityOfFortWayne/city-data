@@ -1,8 +1,8 @@
 Restify = require 'restify'
-routes = require './config/routes'
+App = require './app'
 
 server = Restify.createServer()
 
-routes(server)
+App.routes(server)
 
-server.listen 5000
+server.listen process.env.PORT or 5000

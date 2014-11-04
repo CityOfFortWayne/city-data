@@ -1,7 +1,6 @@
 Basic =
   about: (req, res, next) ->
-    data =
-      name: "Fort Wayne"
+    data = {}
     res.send(data)
     next()
 
