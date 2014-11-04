@@ -1,4 +1,4 @@
-API = require '../app/controllers'
+Controllers = require '../app/controllers'
 
-module.exports = (server) ->
-  server.get '/about', API.Basic.about
+module.exports = (App, server) ->
+  Controllers.Basic(App, server)

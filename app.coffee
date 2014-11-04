@@ -1,3 +1,3 @@
 module.exports =
-  routes: require './config/routes'
-  models: require './app/models/index'
+  Routes: require './config/routes'
+  Models: require './app/models/index'
