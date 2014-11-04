@@ -3,6 +3,12 @@ City of Fort Wayne: data
 
 City of Fort Wayne APIs. Take a look at [data.openftwayne.com](http://data.openftwayne.com) for more information.
 
+## Documentation
+
+The API is viewable by anyone at [api.openftwayne.com](http://api.openftwayne.com).
+
+- [/about](http://api.openftwayne.com/about): a listing of basic data about the city of Fort Wayne
+
 ## Prerequisites
 
 - node.js
