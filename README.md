@@ -8,6 +8,7 @@ City of Fort Wayne APIs. Take a look at [data.openftwayne.com](http://data.openf
 The API is viewable by anyone at [api.openftwayne.com](http://api.openftwayne.com).
 
 - [/about](http://api.openftwayne.com/about): a listing of basic data about the city of Fort Wayne
+- `/crime/:date`: a listing of crime data provided by [fwpd.org](http://fwpd.org) i.e. [2014-11-04](http://api.openftwayne.com/crime/2014-11-04)
 
 ## Prerequisites
 

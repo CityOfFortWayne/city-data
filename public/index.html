@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>API | Open Fort Wayne</title>
+  <meta name="author" content="Derek Hopper" />
+
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+  <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    .hero {
+      text-align: center;
+    }
+
+    .hero > h1, .hero > h2 {
+      margin: 0;
+    }
+
+    @media (min-width: 768px) {
+      .hero {
+        margin-top: 120px;
+      }
+    }
+
+    h1 > span {
+      font-weight: 300;
+    }
+
+    .map-container{
+      margin: 0 auto;
+      width: 640px;
+      /*text-align: center;*/
+    }
+
+    .map {
+      width: 640px;
+      height: 480px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="hero">
+      <h1>
+        <span>Open</span> Fort Wayne
+      </h1>
+      <h2>
+        <a href="http://data.openftwayne.com">data.openftwayne.com</a>
+      </h2>
+
+      <hr>
+
+      <h4>
+        This map is using an API available at <a href="http://api.openftwayne.com">api.openftwayne.com</a>.
+      </h4>
+
+      <h4>
+        <a href="http://api.openftwayne.com/crime/2014-11-04">api.openftwayne.com/crime/2014-11-04</a>
+      </h4>
+
+      <p class="text-muted">
+        See <a href="https://github.com/CityOfFortWayne/data#documentation">CityOfFortWayne/data</a> for API documentation.
+      </p>
+    </div>
+
+    <div class="map-container">
+      <div id="map-canvas" class="map"></div>
+    </div>
+
+  </div>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+
+  <script type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1rhg5VPbfX-wOJeXA0OE2c5RBIRgbqzE">
+  </script>
+  <script type="text/javascript">
+
+    function showOnMap(map, data) {
+      data = _.sample(data, 10)
+      var geocoder = new google.maps.Geocoder();
+
+      _.each(data, function(crime) {
+        geocoder.geocode({ 'address': crime.address + ", Fort Wayne, IN" }, function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+            var infoWindow = new google.maps.InfoWindow({
+              content: crime.time + "<br>" + crime.nature
+            })
+
+            var marker = new google.maps.Marker({
+              title: crime.nature,
+              map: map,
+              position: results[0].geometry.location
+            })
+
+            google.maps.event.addListener(marker, 'click', function() {
+              infoWindow.open(map, marker);
+            });
+          }
+        })
+      })
+    }
+
+    $(document).ready(function() {
+      var mapOptions = {
+        center: { lat: 41.079273, lng: -85.1393513},
+        zoom: 11
+      };
+      var map = new google.maps.Map(document.getElementById('map-canvas'),
+          mapOptions);
+
+      $.getJSON("/crime/2014-11-04", function(data) {
+        showOnMap(map, data)
+      });
+    });
+  </script>
+
+</body>
+</html>
