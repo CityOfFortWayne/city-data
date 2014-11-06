@@ -15,6 +15,10 @@ namespace :crime do
         csv << crime.values
       end
     end
+
+    File.open("#{ROOT_PATH}/../app/models/fixtures/crime/#{date.iso8601}.json", "wb") do |file|
+      file.write(data.to_json)
+    end
   end
 
 end
