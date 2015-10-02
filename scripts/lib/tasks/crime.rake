@@ -8,7 +8,7 @@ namespace :crime do
 
     data = Crime::FWPD.new(date).generate!
 
-    CSV.open("#{ROOT_PATH}/../public/crime/#{date.iso8601}.csv", "wb") do |csv|
+    CSV.open("#{ROOT_PATH}/public/data/crime/#{date.iso8601}.csv", "wb") do |csv|
       csv << ['Incident', 'Time', 'Nature', 'Address']
 
       data.each do |crime|
@@ -16,7 +16,7 @@ namespace :crime do
       end
     end
 
-    File.open("#{ROOT_PATH}/../app/models/fixtures/crime/#{date.iso8601}.json", "wb") do |file|
+    File.open("#{ROOT_PATH}/app/models/fixtures/crime/#{date.iso8601}.json", "wb") do |file|
       file.write(data.to_json)
     end
   end
